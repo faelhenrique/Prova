@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <math.h>
+
+#define NUM_DADOS 4 // Número de linhas em dados
+
+int main() {
+    double dados[NUM_DADOS][3] = {
+        {8, 10, 20},
+        {1, 10, 100},
+        {10, 3, 100},
+        {0, 0, 0}
+    };
+    
+    double comprimento, largura, percentual;
+    for (int i = 0; i < NUM_DADOS; i++) {
+        if (dados[i][0] == 0 && dados[i][1] == 0 && dados[i][2] == 0) {
+            break;
+        }
+        
+        comprimento = dados[i][0];
+        largura = dados[i][1];
+        percentual = dados[i][2];
+        
+        double area_casa = comprimento * largura;
+        double area_terreno = (area_casa * 100) / percentual;
+        double lado_terreno = sqrt(area_terreno);
+        
+        printf("Dados: %.2lf %.2lf %.2lf\n", comprimento, largura, percentual);
+        printf("tamanho minimo do terreno necessario e: %.2lf metros\n\n", lado_terreno);
+    }
+    
+    return 0;
+}
