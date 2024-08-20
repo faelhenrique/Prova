@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    int troco = 68;
+    int moedas = 0;
+    int valor_moedas[] = {25, 10, 5, 1};
+    
+
+    for (int i = 0; i < 4; i++) {
+        moedas += troco / valor_moedas[i];
+        troco %= valor_moedas[i];
+    }
+
+    printf("%d\n", moedas);
+
+    return 0;
+}
