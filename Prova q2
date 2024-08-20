@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+#define MATRIZ_TAMANHO 2
+
+void multiplica_matrizes(int mat1[][MATRIZ_TAMANHO], int mat2[][MATRIZ_TAMANHO], int resultado[][MATRIZ_TAMANHO]) {
+    for (int i = 0; i < MATRIZ_TAMANHO; i++) {
+        for (int j = 0; j < MATRIZ_TAMANHO; j++) {
+            resultado[i][j] = 0;
+            for (int k = 0; k < MATRIZ_TAMANHO; k++) {
+                resultado[i][j] += mat1[i][k] * mat2[k][j];
+            }
+        }
+    }
+}
+
+int main() {
+    int mat1[MATRIZ_TAMANHO][MATRIZ_TAMANHO] = {
+        {1, 2},
+        {3, 4}
+    };
+    int mat2[MATRIZ_TAMANHO][MATRIZ_TAMANHO] = {
+        {5, 6},
+        {7, 8}
+    };
+
+    int resultado[MATRIZ_TAMANHO][MATRIZ_TAMANHO];
+
+    multiplica_matrizes(mat1, mat2, resultado);
+
+    printf("a matriz resultante da multiplicacao e:\n");
+    for (int i = 0; i < MATRIZ_TAMANHO; i++) {
+        for (int j = 0; j < MATRIZ_TAMANHO; j++) {
+            printf("%d ", resultado[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
