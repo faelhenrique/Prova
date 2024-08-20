@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int calcular_pontuacao(const char *palavra) {
+    int pontuacao = 0;
+    int valores[26] = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+    
+    for (int i = 0; palavra[i] != '\0'; i++) {
+        char letra = toupper(palavra[i]);
+        if (letra >= 'A' && letra <= 'Z') {
+            pontuacao += valores[letra - 'A'];
+        }
+    }
+    
+    return pontuacao;
+}
+void ler_palavra(char *palavra, size_t tamanho, const char *prompt) {
+    printf("%s", prompt);
+    if (fgets(palavra, tamanho, stdin)) {
+        size_t len = strlen(palavra);
+        if (len > 0 && palavra[len - 1] == '\n') {
+            palavra[len - 1] = '\0';
+        }
+    }
+}
+
+int main() {
+    char palavra1[100], palavra2[100];
+    
+    ler_palavra(palavra1, sizeof(palavra1), "Jogador 1, insira sua palavra: ");
+    ler_palavra(palavra2, sizeof(palavra2), "Jogador 2, insira sua palavra: ");
+    
+    int pontuacao1 = calcular_pontuacao(palavra1);
+    int pontuacao2 = calcular_pontuacao(palavra2);
+    if (pontuacao1 > pontuacao2) {
+        printf("jogador numero 1 venceu\n");
+    } else if (pontuacao2 > pontuacao1) {
+        printf("jogador numero 2 venceu\n");
+    } else {
+        printf("empate!\n");
+    }
+    
+    return 0;
+}
